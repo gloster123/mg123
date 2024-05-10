@@ -1,0 +1,9 @@
+#Version 3.4.3
+
+/Desktop# spark-shell
+
+val inputfile = sc.textfile ("input.txt")
+
+val counts = inputfile.flatMap(line => line.Split("\\s+")).map(word => (word, 1)).reduceByKey(_ + _)
+
+counts.saveAsTextFile ("output")
